@@ -2,62 +2,41 @@
 
 var path = require('path');
 var conf = require('./gulp/conf');
-
 var _ = require('lodash');
 var wiredep = require('wiredep');
 
 function listFiles() {
-  var wiredepOptions = _.extend({}, conf.wiredep, {
-    dependencies: true,
-    devDependencies: true
-  });
+    var wiredepOptions = _.extend({}, conf.wiredep, {
+        dependencies: true,
+        devDependencies: true
+    });
 
-  return wiredep(wiredepOptions).js
-    .concat([
-      path.join(conf.paths.tmp, '/serve/app/**/*.module.js'),
-      path.join(conf.paths.tmp, '/serve/app/**/*.js'),
-      path.join(conf.paths.tests, '/**/*.js'),
-      path.join(conf.paths.src, '/**/*.spec.js'),
-      path.join(conf.paths.src, '/**/*.mock.js'),
-      path.join(conf.paths.src, '/**/*.html')
-    ]);
+    return wiredep(wiredepOptions).js
+        .concat([
+            path.join(conf.paths.tmp, '/serve/app/**/*.module.js'),
+            path.join(conf.paths.tmp, '/serve/app/**/*.js'),
+            path.join(conf.paths.tests, '/**/*.js'),
+            path.join(conf.paths.src, '/**/*.spec.js'),
+            path.join(conf.paths.src, '/**/*.mock.js'),
+            path.join(conf.paths.src, '/**/*.html')
+        ]);
 }
 
-module.exports = function(config) {
+module.exports = function (config) {
 
-  var configuration = {
-    files: listFiles(),
+    var configuration = {
+        files: listFiles(),
+        singleRun: true,
+        autoWatch: false,
+        frameworks: ['jasmine'],
+        browsers: ['PhantomJS'],
+        plugins: [
+            'karma-jasmine-html-reporter',
+            'karma-chrome-launcher',
+            'karma-phantomjs-launcher',
+            'karma-jasmine'
+        ]
+    };
 
-    singleRun: true,
-
-    autoWatch: false,
-
-    frameworks: ['jasmine', 'angular-filesort'],
-
-    angularFilesort: {
-      whitelist: [path.join(conf.paths.tmp, '/**/!(*.html|*.spec|*.mock).js')]
-    },
-
-    ngHtml2JsPreprocessor: {
-      stripPrefix: 'src/',
-      moduleName: 'exchangeWeb'
-    },
-
-    browsers : ['PhantomJS'],
-
-    plugins : [
-      'karma-jasmine-html-reporter',
-      'karma-chrome-launcher',
-      'karma-phantomjs-launcher',
-      'karma-angular-filesort',
-      'karma-jasmine',
-      'karma-ng-html2js-preprocessor'
-    ],
-
-    preprocessors: {
-      'src/**/*.html': ['ng-html2js']
-    }
-  };
-
-  config.set(configuration);
+    config.set(configuration);
 };
