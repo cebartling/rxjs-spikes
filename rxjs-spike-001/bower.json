@@ -2,7 +2,9 @@
   "name": "rxjs-spike-001",
   "version": "0.0.0",
   "dependencies": {
-    "lodash": "~3.10.1"
+    "lodash": "~3.10.1",
+    "rxjs": "~4.0.7",
+    "rxjs-dom": "rx-dom#~7.0.3"
   },
   "devDependencies": {}
 }

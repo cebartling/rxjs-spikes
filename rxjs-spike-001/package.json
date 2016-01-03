@@ -54,6 +54,8 @@
     "karma-jasmine-html-reporter": "^0.1.8",
     "karma-ng-html2js-preprocessor": "~0.2.0",
     "karma-phantomjs-launcher": "~0.2.0",
+    "karma-sourcemap-loader": "^0.3.6",
+    "karma-webpack": "^1.7.0",
     "lodash": "~3.10.1",
     "main-bower-files": "~2.9.0",
     "merge-stream": "~1.0.0",
