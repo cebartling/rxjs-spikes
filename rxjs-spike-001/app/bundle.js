@@ -44,25 +44,16 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	document.write("Webpack for the win!");
+	console.log('Starting up application with Webpack');
 
 	__webpack_require__(1);
-	__webpack_require__(2);
 
 
 /***/ },
 /* 1 */
 /***/ function(module, exports) {
 
-	module.exports = document.write("Oh yeah another file");
-
-
-
-/***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-	alert('This is da bomb!');
+	module.exports = {};
 
 
 /***/ }
